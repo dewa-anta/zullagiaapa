@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Daniel Store — Customer Testimonials</title>
+<meta name="description" content="Customer testimonials and order results from Daniel Store.">
+<style>
+:root {
+  --bg:#080808; --panel:#101010; --panel2:#151515; --text:#f5f5f5;
+  --muted:#a6a6a6; --gold:#d9ad55; --gold2:#f1d18a; --line:#262626;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 10% 0%,rgba(217,173,85,.12),transparent 30rem),
+ radial-gradient(circle at 90% 10%,rgba(217,173,85,.08),transparent 28rem),
+ var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,8,8,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.08em}
+.logo{width:38px;height:38px;border:1px solid rgba(217,173,85,.55);border-radius:12px;display:grid;place-items:center;color:var(--gold);font-size:14px;box-shadow:0 0 25px rgba(217,173,85,.12)}
+.navlink{font-size:13px;color:#ddd;padding:10px 14px;border:1px solid var(--line);border-radius:999px}
+.hero{padding:72px 0 42px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(217,173,85,.3);color:var(--gold2);padding:8px 13px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(217,173,85,.06)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+h1{font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-.055em;margin:22px auto 16px;max-width:850px}
+.gold{color:var(--gold2)}
+.hero p{max-width:680px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.7}
+.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.stat{background:rgba(255,255,255,.035);border:1px solid var(--line);padding:10px 14px;border-radius:14px;color:#ddd;font-size:13px}
+.stat b{color:white}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 18px}
+.section-title{font-size:20px;font-weight:850}
+.hint{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:70px}
+.card{position:relative;padding:0;border:1px solid var(--line);background:var(--panel);border-radius:18px;overflow:hidden;cursor:pointer;min-height:120px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-3px);border-color:rgba(217,173,85,.55);box-shadow:0 16px 45px rgba(0,0,0,.35)}
+.card img{display:block;width:100%;height:auto;aspect-ratio:691/1536;object-fit:cover;background:#111}
+.card-num{position:absolute;top:9px;right:9px;background:rgba(0,0,0,.68);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px 8px;font-size:11px;color:#eee}
+footer{border-top:1px solid var(--line);padding:34px 0 48px;color:var(--muted);text-align:center}
+.cta{display:inline-flex;margin-top:14px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;font-weight:900}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.viewer{position:relative;width:min(1100px,100%);height:min(94vh,900px);display:flex;align-items:center;justify-content:center}
+.viewer img{max-width:calc(100% - 100px);max-height:94vh;width:auto;height:auto;object-fit:contain;border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.close,.prev,.next{position:absolute;border:1px solid rgba(255,255,255,.15);background:rgba(25,25,25,.82);color:white;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font-size:22px;backdrop-filter:blur(10px)}
+.close{right:8px;top:8px}
+.prev{left:8px;top:50%;transform:translateY(-50%)}
+.next{right:8px;top:50%;transform:translateY(-50%)}
+.caption{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.78);border:1px solid rgba(255,255,255,.1);padding:8px 13px;border-radius:999px;font-size:12px;color:#ddd;backdrop-filter:blur(8px)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){
+ .container{width:min(100% - 20px,1180px)}
+ .nav{height:62px}
+ .navlink{display:none}
+ .hero{padding:54px 0 30px}
+ h1{font-size:43px}
+ .hero p{font-size:14px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{border-radius:13px}
+ .toolbar{align-items:flex-end;flex-direction:column;gap:5px}
+ .viewer img{max-width:calc(100% - 55px);max-height:86vh;border-radius:10px}
+ .prev{left:0} .next{right:0} .close{right:0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#"><span class="logo">DS</span><span>DANIEL STORE</span></a>
+    <a class="navlink" href="#testimonials">View Testimonials</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span> Customer Testimonials</div>
+    <h1>Real results.<br><span class="gold">Happy customers.</span></h1>
+    <p>Browse customer screenshots and completed order results from Daniel Store. Tap any photo to view it full screen.</p>
+    <div class="stats">
+      <div class="stat"><b>53</b> testimonials</div>
+      <div class="stat">Mobile friendly</div>
+      <div class="stat">Full-screen viewer</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="container">
+  <div class="toolbar">
+    <div class="section-title">Customer Gallery</div>
+    <div class="hint">Tap a photo • Swipe / use arrows</div>
+  </div>
+  <div class="grid">
+    <button class="card" type="button" data-index="1" aria-label="Open testimonial 1">
+        <img src="images/testimonial-01.jpg" alt="Customer testimonial 1" loading="lazy" decoding="async">
+        <span class="card-num">#01</span>
+    </button>
+<button class="card" type="button" data-index="2" aria-label="Open testimonial 2">
+        <img src="images/testimonial-02.jpg" alt="Customer testimonial 2" loading="lazy" decoding="async">
+        <span class="card-num">#02</span>
+    </button>
+<button class="card" type="button" data-index="3" aria-label="Open testimonial 3">
+        <img src="images/testimonial-03.jpg" alt="Customer testimonial 3" loading="lazy" decoding="async">
+        <span class="card-num">#03</span>
+    </button>
+<button class="card" type="button" data-index="4" aria-label="Open testimonial 4">
+        <img src="images/testimonial-04.jpg" alt="Customer testimonial 4" loading="lazy" decoding="async">
+        <span class="card-num">#04</span>
+    </button>
+<button class="card" type="button" data-index="5" aria-label="Open testimonial 5">
+        <img src="images/testimonial-05.jpg" alt="Customer testimonial 5" loading="lazy" decoding="async">
+        <span class="card-num">#05</span>
+    </button>
+<button class="card" type="button" data-index="6" aria-label="Open testimonial 6">
+        <img src="images/testimonial-06.jpg" alt="Customer testimonial 6" loading="lazy" decoding="async">
+        <span class="card-num">#06</span>
+    </button>
+<button class="card" type="button" data-index="7" aria-label="Open testimonial 7">
+        <img src="images/testimonial-07.jpg" alt="Customer testimonial 7" loading="lazy" decoding="async">
+        <span class="card-num">#07</span>
+    </button>
+<button class="card" type="button" data-index="8" aria-label="Open testimonial 8">
+        <img src="images/testimonial-08.jpg" alt="Customer testimonial 8" loading="lazy" decoding="async">
+        <span class="card-num">#08</span>
+    </button>
+<button class="card" type="button" data-index="9" aria-label="Open testimonial 9">
+        <img src="images/testimonial-09.jpg" alt="Customer testimonial 9" loading="lazy" decoding="async">
+        <span class="card-num">#09</span>
+    </button>
+<button class="card" type="button" data-index="10" aria-label="Open testimonial 10">
+        <img src="images/testimonial-10.jpg" alt="Customer testimonial 10" loading="lazy" decoding="async">
+        <span class="card-num">#10</span>
+    </button>
+<button class="card" type="button" data-index="11" aria-label="Open testimonial 11">
+        <img src="images/testimonial-11.jpg" alt="Customer testimonial 11" loading="lazy" decoding="async">
+        <span class="card-num">#11</span>
+    </button>
+<button class="card" type="button" data-index="12" aria-label="Open testimonial 12">
+        <img src="images/testimonial-12.jpg" alt="Customer testimonial 12" loading="lazy" decoding="async">
+        <span class="card-num">#12</span>
+    </button>
+<button class="card" type="button" data-index="13" aria-label="Open testimonial 13">
+        <img src="images/testimonial-13.jpg" alt="Customer testimonial 13" loading="lazy" decoding="async">
+        <span class="card-num">#13</span>
+    </button>
+<button class="card" type="button" data-index="14" aria-label="Open testimonial 14">
+        <img src="images/testimonial-14.jpg" alt="Customer testimonial 14" loading="lazy" decoding="async">
+        <span class="card-num">#14</span>
+    </button>
+<button class="card" type="button" data-index="15" aria-label="Open testimonial 15">
+        <img src="images/testimonial-15.jpg" alt="Customer testimonial 15" loading="lazy" decoding="async">
+        <span class="card-num">#15</span>
+    </button>
+<button class="card" type="button" data-index="16" aria-label="Open testimonial 16">
+        <img src="images/testimonial-16.jpg" alt="Customer testimonial 16" loading="lazy" decoding="async">
+        <span class="card-num">#16</span>
+    </button>
+<button class="card" type="button" data-index="17" aria-label="Open testimonial 17">
+        <img src="images/testimonial-17.jpg" alt="Customer testimonial 17" loading="lazy" decoding="async">
+        <span class="card-num">#17</span>
+    </button>
+<button class="card" type="button" data-index="18" aria-label="Open testimonial 18">
+        <img src="images/testimonial-18.jpg" alt="Customer testimonial 18" loading="lazy" decoding="async">
+        <span class="card-num">#18</span>
+    </button>
+<button class="card" type="button" data-index="19" aria-label="Open testimonial 19">
+        <img src="images/testimonial-19.jpg" alt="Customer testimonial 19" loading="lazy" decoding="async">
+        <span class="card-num">#19</span>
+    </button>
+<button class="card" type="button" data-index="20" aria-label="Open testimonial 20">
+        <img src="images/testimonial-20.jpg" alt="Customer testimonial 20" loading="lazy" decoding="async">
+        <span class="card-num">#20</span>
+    </button>
+<button class="card" type="button" data-index="21" aria-label="Open testimonial 21">
+        <img src="images/testimonial-21.jpg" alt="Customer testimonial 21" loading="lazy" decoding="async">
+        <span class="card-num">#21</span>
+    </button>
+<button class="card" type="button" data-index="22" aria-label="Open testimonial 22">
+        <img src="images/testimonial-22.jpg" alt="Customer testimonial 22" loading="lazy" decoding="async">
+        <span class="card-num">#22</span>
+    </button>
+<button class="card" type="button" data-index="23" aria-label="Open testimonial 23">
+        <img src="images/testimonial-23.jpg" alt="Customer testimonial 23" loading="lazy" decoding="async">
+        <span class="card-num">#23</span>
+    </button>
+<button class="card" type="button" data-index="24" aria-label="Open testimonial 24">
+        <img src="images/testimonial-24.jpg" alt="Customer testimonial 24" loading="lazy" decoding="async">
+        <span class="card-num">#24</span>
+    </button>
+<button class="card" type="button" data-index="25" aria-label="Open testimonial 25">
+        <img src="images/testimonial-25.jpg" alt="Customer testimonial 25" loading="lazy" decoding="async">
+        <span class="card-num">#25</span>
+    </button>
+<button class="card" type="button" data-index="26" aria-label="Open testimonial 26">
+        <img src="images/testimonial-26.png" alt="Customer testimonial 26" loading="lazy" decoding="async">
+        <span class="card-num">#26</span>
+    </button>
+<button class="card" type="button" data-index="27" aria-label="Open testimonial 27">
+        <img src="images/testimonial-27.jpg" alt="Customer testimonial 27" loading="lazy" decoding="async">
+        <span class="card-num">#27</span>
+    </button>
+<button class="card" type="button" data-index="28" aria-label="Open testimonial 28">
+        <img src="images/testimonial-28.jpg" alt="Customer testimonial 28" loading="lazy" decoding="async">
+        <span class="card-num">#28</span>
+    </button>
+<button class="card" type="button" data-index="29" aria-label="Open testimonial 29">
+        <img src="images/testimonial-29.jpg" alt="Customer testimonial 29" loading="lazy" decoding="async">
+        <span class="card-num">#29</span>
+    </button>
+<button class="card" type="button" data-index="30" aria-label="Open testimonial 30">
+        <img src="images/testimonial-30.jpg" alt="Customer testimonial 30" loading="lazy" decoding="async">
+        <span class="card-num">#30</span>
+    </button>
+<button class="card" type="button" data-index="31" aria-label="Open testimonial 31">
+        <img src="images/testimonial-31.jpg" alt="Customer testimonial 31" loading="lazy" decoding="async">
+        <span class="card-num">#31</span>
+    </button>
+<button class="card" type="button" data-index="32" aria-label="Open testimonial 32">
+        <img src="images/testimonial-32.jpg" alt="Customer testimonial 32" loading="lazy" decoding="async">
+        <span class="card-num">#32</span>
+    </button>
+<button class="card" type="button" data-index="33" aria-label="Open testimonial 33">
+        <img src="images/testimonial-33.jpg" alt="Customer testimonial 33" loading="lazy" decoding="async">
+        <span class="card-num">#33</span>
+    </button>
+<button class="card" type="button" data-index="34" aria-label="Open testimonial 34">
+        <img src="images/testimonial-34.jpg" alt="Customer testimonial 34" loading="lazy" decoding="async">
+        <span class="card-num">#34</span>
+    </button>
+<button class="card" type="button" data-index="35" aria-label="Open testimonial 35">
+        <img src="images/testimonial-35.jpg" alt="Customer testimonial 35" loading="lazy" decoding="async">
+        <span class="card-num">#35</span>
+    </button>
+<button class="card" type="button" data-index="36" aria-label="Open testimonial 36">
+        <img src="images/testimonial-36.jpg" alt="Customer testimonial 36" loading="lazy" decoding="async">
+        <span class="card-num">#36</span>
+    </button>
+<button class="card" type="button" data-index="37" aria-label="Open testimonial 37">
+        <img src="images/testimonial-37.jpg" alt="Customer testimonial 37" loading="lazy" decoding="async">
+        <span class="card-num">#37</span>
+    </button>
+<button class="card" type="button" data-index="38" aria-label="Open testimonial 38">
+        <img src="images/testimonial-38.jpg" alt="Customer testimonial 38" loading="lazy" decoding="async">
+        <span class="card-num">#38</span>
+    </button>
+<button class="card" type="button" data-index="39" aria-label="Open testimonial 39">
+        <img src="images/testimonial-39.jpg" alt="Customer testimonial 39" loading="lazy" decoding="async">
+        <span class="card-num">#39</span>
+    </button>
+<button class="card" type="button" data-index="40" aria-label="Open testimonial 40">
+        <img src="images/testimonial-40.jpg" alt="Customer testimonial 40" loading="lazy" decoding="async">
+        <span class="card-num">#40</span>
+    </button>
+<button class="card" type="button" data-index="41" aria-label="Open testimonial 41">
+        <img src="images/testimonial-41.jpg" alt="Customer testimonial 41" loading="lazy" decoding="async">
+        <span class="card-num">#41</span>
+    </button>
+<button class="card" type="button" data-index="42" aria-label="Open testimonial 42">
+        <img src="images/testimonial-42.jpg" alt="Customer testimonial 42" loading="lazy" decoding="async">
+        <span class="card-num">#42</span>
+    </button>
+<button class="card" type="button" data-index="43" aria-label="Open testimonial 43">
+        <img src="images/testimonial-43.jpg" alt="Customer testimonial 43" loading="lazy" decoding="async">
+        <span class="card-num">#43</span>
+    </button>
+<button class="card" type="button" data-index="44" aria-label="Open testimonial 44">
+        <img src="images/testimonial-44.jpg" alt="Customer testimonial 44" loading="lazy" decoding="async">
+        <span class="card-num">#44</span>
+    </button>
+<button class="card" type="button" data-index="45" aria-label="Open testimonial 45">
+        <img src="images/testimonial-45.jpg" alt="Customer testimonial 45" loading="lazy" decoding="async">
+        <span class="card-num">#45</span>
+    </button>
+<button class="card" type="button" data-index="46" aria-label="Open testimonial 46">
+        <img src="images/testimonial-46.jpg" alt="Customer testimonial 46" loading="lazy" decoding="async">
+        <span class="card-num">#46</span>
+    </button>
+<button class="card" type="button" data-index="47" aria-label="Open testimonial 47">
+        <img src="images/testimonial-47.jpg" alt="Customer testimonial 47" loading="lazy" decoding="async">
+        <span class="card-num">#47</span>
+    </button>
+<button class="card" type="button" data-index="48" aria-label="Open testimonial 48">
+        <img src="images/testimonial-48.jpg" alt="Customer testimonial 48" loading="lazy" decoding="async">
+        <span class="card-num">#48</span>
+    </button>
+<button class="card" type="button" data-index="49" aria-label="Open testimonial 49">
+        <img src="images/testimonial-49.jpg" alt="Customer testimonial 49" loading="lazy" decoding="async">
+        <span class="card-num">#49</span>
+    </button>
+<button class="card" type="button" data-index="50" aria-label="Open testimonial 50">
+        <img src="images/testimonial-50.jpg" alt="Customer testimonial 50" loading="lazy" decoding="async">
+        <span class="card-num">#50</span>
+    </button>
+<button class="card" type="button" data-index="51" aria-label="Open testimonial 51">
+        <img src="images/testimonial-51.jpg" alt="Customer testimonial 51" loading="lazy" decoding="async">
+        <span class="card-num">#51</span>
+    </button>
+<button class="card" type="button" data-index="52" aria-label="Open testimonial 52">
+        <img src="images/testimonial-52.jpg" alt="Customer testimonial 52" loading="lazy" decoding="async">
+        <span class="card-num">#52</span>
+    </button>
+<button class="card" type="button" data-index="53" aria-label="Open testimonial 53">
+        <img src="images/testimonial-53.jpg" alt="Customer testimonial 53" loading="lazy" decoding="async">
+        <span class="card-num">#53</span>
+    </button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong style="color:#fff">Daniel Store</strong><br>
+    <span>Customer Testimonials</span>
+    <div><a class="cta" href="#testimonials">View All Testimonials</a></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="viewer">
+    <button class="close" id="close" aria-label="Close">×</button>
+    <button class="prev" id="prev" aria-label="Previous">‹</button>
+    <img id="viewerImg" alt="">
+    <button class="next" id="next" aria-label="Next">›</button>
+    <div class="caption" id="caption"></div>
+  </div>
+</div>
+
+<script>
+const items = [...document.querySelectorAll('.card')];
+const modal = document.getElementById('modal');
+const viewerImg = document.getElementById('viewerImg');
+const caption = document.getElementById('caption');
+let index = 0;
+
+function show(i) {
+  index = (i + items.length) % items.length;
+  const img = items[index].querySelector('img');
+  viewerImg.src = img.src;
+  viewerImg.alt = img.alt;
+  caption.textContent = `Testimonial ${index + 1} of ${items.length}`;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+items.forEach((item,i)=>item.addEventListener('click',()=>show(i)));
+document.getElementById('close').onclick=closeModal;
+document.getElementById('prev').onclick=()=>show(index-1);
+document.getElementById('next').onclick=()=>show(index+1);
+modal.addEventListener('click',e=>{if(e.target===modal) closeModal();});
+document.addEventListener('keydown',e=>{
+  if(!modal.classList.contains('open')) return;
+  if(e.key==='Escape') closeModal();
+  if(e.key==='ArrowLeft') show(index-1);
+  if(e.key==='ArrowRight') show(index+1);
+});
+let startX=0;
+viewerImg.addEventListener('touchstart',e=>startX=e.changedTouches[0].screenX,{passive:true});
+viewerImg.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].screenX-startX;
+  if(Math.abs(dx)>50) show(index+(dx<0?1:-1));
+},{passive:true});
+</script>
+</body>
+</html>
